@@ -28,7 +28,7 @@ public class DBUser {
         return null;
     }
 
-    public User getUserByName(@RequestParam String name) {
+    public User getUserByName(String name) {
         for(User user:userTable) {
             if (user.getName().equals(name)) {
                 return user;
@@ -40,6 +40,18 @@ public class DBUser {
     public User createUser(User user) {
         userTable.add(user);
         return user;
+    }
+
+    public User deleteUser(int id) {
+        for (User user: userTable) {
+            if (user.getId() == id) {
+                User tmp = user;
+                userTable.remove(user);
+                System.out.println(tmp);
+                return tmp;
+            }
+        }
+        return null;
     }
 
 }

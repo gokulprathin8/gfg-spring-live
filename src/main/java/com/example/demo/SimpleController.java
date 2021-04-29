@@ -14,7 +14,7 @@ public class SimpleController {
 
     DBUser dbUser = new DBUser();
 
-    @GetMapping("/hi")
+    @RequestMapping(path = "/hi", method = RequestMethod.GET, consumes = "application/json", produces = "application/json")
     public String sayHi() {
         return "Hello from Server";
     }
@@ -49,6 +49,12 @@ public class SimpleController {
     @ResponseStatus(HttpStatus.CREATED)
     public User createUser(@RequestBody User user ) {
         return dbUser.createUser(user);
+    }
+
+    @DeleteMapping("/users/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public User deleteUser(@PathVariable int id) {
+        return dbUser.deleteUser(id);
     }
 
 }
