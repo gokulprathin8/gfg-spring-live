@@ -42,16 +42,8 @@ public class DBUser {
         return user;
     }
 
-    public User deleteUser(int id) {
-        for (User user: userTable) {
-            if (user.getId() == id) {
-                User tmp = user;
-                userTable.remove(user);
-                System.out.println(tmp);
-                return tmp;
-            }
-        }
-        return null;
+    public void deleteUser(int id) {
+        userTable.removeIf(user -> user.getId() == id);
     }
 
 }

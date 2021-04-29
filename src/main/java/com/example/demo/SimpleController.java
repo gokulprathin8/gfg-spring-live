@@ -53,8 +53,8 @@ public class SimpleController {
 
     @DeleteMapping("/users/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public User deleteUser(@PathVariable int id) {
-        return dbUser.deleteUser(id);
+    public void deleteUser(@PathVariable int id) {
+         dbUser.deleteUser(id);
     }
 
 }
