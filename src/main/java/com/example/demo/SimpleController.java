@@ -1,9 +1,12 @@
 package com.example.demo;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -26,12 +29,16 @@ public class SimpleController {
         return dbUser.getAllUsers();
     }
     
-//    @GetMapping("/users/{id}")
-//    public ResponseEntity<User> getSingleUser(@PathVariable int id) {
-//        ResponseEntity<User> responseEntity = new ResponseEntity<User>();
-//        User user = dbUser.getAUser(id);
-//
-//    }
+    @GetMapping("/users/{id}")
+    public ResponseEntity<User> getSingleUser(@PathVariable int id) {
+        User user = dbUser.getAUser(id);
+        MultiValueMap<String, String> headers = new LinkedMultiValueMap<>();
+        HttpStatus status = HttpStatus.ACCEPTED;
+        headers.put("server", Collections.singletonList("codeOfGokul"));
+        ResponseEntity<User> responseEntity = new ResponseEntity<User>(user, headers, status);
+
+        return responseEntity;
+    }
 
     @GetMapping("/user")
     public User getSingleUserByName(@RequestParam String name) {
