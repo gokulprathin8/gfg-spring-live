@@ -21,7 +21,9 @@ public class BookController {
     @PostMapping("/books")
     public Book createBook(@RequestBody Book book) {
         Book book1 = new Book(book.getName(), book.getAuthorName(), book.getCost());
-        bookRepository.save(book1);
+
+//        bookRepository.save(book1);
+
         return book1;
     }
 
